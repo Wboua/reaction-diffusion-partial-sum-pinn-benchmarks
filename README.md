@@ -35,10 +35,6 @@ The complete original two-component FDM, FEM and PINN solver/training workflow h
 
 The restored package includes `classical_solvers.py` (FDM and P1 Galerkin FEM), `model.py` and `pinn_solver.py`, plus the main study, convergence, ablation and diagnostic runners. Existing archived outputs remain the source of record for the manuscript values.
 
-## Suggested GitHub repository name
+## Archive and citation
 
-`reaction-diffusion-partial-sum-pinn-benchmarks`
-
-## Recommended citation in the manuscript
-
-After publishing the repository, replace the repository placeholder in the Code and Data Availability statement with the permanent GitHub URL. For archival reproducibility, create a Zenodo release from the GitHub repository and cite the DOI once available.
+The reproducibility package is archived on Zenodo. The version-specific DOI for release `v1.0.0` is [10.5281/zenodo.21968286](https://doi.org/10.5281/zenodo.21968286). Cite the concept DOI, [10.5281/zenodo.21968285](https://doi.org/10.5281/zenodo.21968285), to refer to all versions of this software record.
