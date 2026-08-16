@@ -1,40 +1,36 @@
-# MJM Reaction–Diffusion / PINN manuscript repository
+# Reaction-diffusion partial-sum PINN benchmarks
 
-This repository is organized for the Mediterranean Journal of Mathematics submission and for reproducibility/GitHub archiving.
+Reproducibility package for the numerical experiments accompanying the associated Mediterranean Journal of Mathematics manuscript. It contains the FDM, FEM and PINN implementations, the archived numerical outputs used in the reported results, and scripts for validation diagnostics and figure regeneration.
 
-## Structure
+## Contents
 
-- `manuscript/` — current MJM `birkjour` manuscript source, bibliography, compiled PDF and publication figures.
-- `simulations/outputs/` — archived numerical outputs used in the manuscript (`CSV` and `NPZ`).
-- `simulations/scripts/` — analysis/diagnostic and figure-regeneration scripts available in the current revision workspace.
-- `docs/` — Birkhäuser template documentation and revision/audit notes.
+- `simulations/src/` — complete FDM, P1 Galerkin FEM and PINN solvers; study, convergence, ablation and diagnostic runners.
+- `simulations/scripts/` — additional output-based diagnostics and error-figure regeneration.
+- `simulations/outputs/` — archived CSV and NPZ outputs used in the numerical study.
 
-## Source-of-record numerical outputs
+## Reproduction
 
-The numerical values reported in the manuscript are backed by the files in `simulations/outputs/`, including:
+Create a fresh Python environment, then install the dependencies:
 
-- `solutions.npz` — two-component reference/FDM/FEM/PINN fields.
-- `three_component_solutions.npz` — three-component reference/FDM/FEM fields.
-- `metrics.csv`, `summary.csv` — main accuracy/runtime/PINN metrics.
-- `mms_fdm_spatial.csv`, `mms_fem_spatial.csv`, `mms_temporal.csv` — manufactured-solution verification.
-- `three_component_metrics.csv`, `three_component_reference_check.csv` — non-monotone benchmark metrics.
-- `coercivity_diagnostic.csv` — coercivity-bound consistency diagnostic.
-- `initial_condition_diagnostic.csv` — PINN initial-condition diagnostic.
+```bash
+pip install -r simulations/src/requirements.txt
+```
 
-## Available scripts
+Run a quick end-to-end check:
 
-- `coercivity_diagnostic.py`
-- `initial_condition_diagnostic.py`
-- `regenerate_error_figures.py`
+```bash
+python simulations/src/run_study.py --mode quick
+```
 
-The archived outputs above are the source of record for the values in the manuscript.
+Use `--mode publication` for the main five-seed PINN study. Recreated artifacts are written to `simulations/outputs/`.
 
-### Reproducibility
+## Archived outputs
 
-The complete original two-component FDM, FEM and PINN solver/training workflow has been restored under `simulations/src/`. Install `simulations/src/requirements.txt`, then run `python simulations/src/run_study.py --mode quick` for a pipeline check or use `--mode publication` for the five-seed study. Recreated artifacts are written to `simulations/outputs/`.
-
-The restored package includes `classical_solvers.py` (FDM and P1 Galerkin FEM), `model.py` and `pinn_solver.py`, plus the main study, convergence, ablation and diagnostic runners. Existing archived outputs remain the source of record for the manuscript values.
+The archived outputs include common-grid reference/FDM/FEM/PINN fields, accuracy and runtime metrics, manufactured-solution refinements, three-component benchmark fields and metrics, and coercivity and initial-condition diagnostics. They remain the source of record for the numerical values reported in the associated manuscript.
 
 ## Archive and citation
 
-The reproducibility package is archived on Zenodo. The version-specific DOI for release `v1.0.0` is [10.5281/zenodo.21968286](https://doi.org/10.5281/zenodo.21968286). Cite the concept DOI, [10.5281/zenodo.21968285](https://doi.org/10.5281/zenodo.21968285), to refer to all versions of this software record.
+The software record is archived on Zenodo.
+
+- Version `v1.0.0`: [10.5281/zenodo.21968286](https://doi.org/10.5281/zenodo.21968286)
+- Concept DOI for all versions: [10.5281/zenodo.21968285](https://doi.org/10.5281/zenodo.21968285)
