@@ -1,0 +1,2 @@
+reference_nx,reference_dt,check_nx,check_dt,rmse,relative_l2,check_runtime_seconds
+401,2.5e-05,801,1.25e-05,1.0296193023425349e-05,4.2387255762771624e-05,1.721362943999793

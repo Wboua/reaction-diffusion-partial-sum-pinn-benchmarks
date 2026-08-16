@@ -1,0 +1,203 @@
+\section{Analytical framework and exact partial-sum estimate}
+\label{sec:theoretical}
+
+The two-component critical case was treated in~\cite{alaa2001global}, and complete triangular $m$-component existence frameworks were developed in~\cite{alaa2013triangular,bouarifi2015climate}. The present section isolates a narrower analytical object inside that setting: the exact partial-sum coercivity calculation and the full-gradient hypothesis it actually uses. Conditional on those bounds, the absorption step is valid for any fixed positive diffusion vector without monotone ordering.
+
+\subsection{Assumptions and solution concept}
+
+Let $T_k(s)=\max(-k,\min(s,k))$. We assume that $\Omega\subset\mathbb R^N$ is bounded with Lipschitz boundary, $d_i>0$, and $u_{i,0}\in L^2(\Omega)$ is nonnegative. The nonlinearities are Carathéodory functions, locally Lipschitz in $(u,p)$, and quasi-positive:
+\[
+ f_i(t,x,u_1,\ldots,u_{i-1},0,u_{i+1},\ldots,u_m,p_1,\ldots,p_{i-1},0,p_{i+1},\ldots,p_m)\ge0
+\]
+for $u\in\mathbb R_+^m$. We use the partial-sum form of triangular control
+\begin{equation}
+ \sum_{i=1}^r f_i(t,x,u,p)\le0,
+ \qquad r=1,\ldots,m,
+ \label{eq:partial-mass}
+\end{equation}
+which is a special case of the standard weighted lower-triangular condition. The critical-growth assumptions are
+\begin{align}
+ |f_1(t,x,u,p)|&\le \Gamma_1(|u_1|)\left(F_1+|p_1|^2+\sum_{j=2}^m|p_j|^{\alpha_j}\right),\quad 1\le\alpha_j<2,\label{eq:growth1}\\
+ |f_i(t,x,u,p)|&\le \Gamma_i\left(\sum_{j=1}^i|u_j|\right)\left(F_i+\sum_{j=1}^m|p_j|^2\right),\quad i\ge2,\label{eq:growth2}
+\end{align}
+where $F_i\in L^1(Q_T)$ and the $\Gamma_i$ are nondecreasing. This notation is kept distinct from the constants $C_j$ introduced below for full-gradient bounds.
+The growth assumptions identify the critical framework in which the partial-sum calculation is used. They are not needed for the algebraic identity or for Young's inequality itself; their role belongs to the separate estimates, equi-integrability, and limit passage required by a complete existence proof. This distinction is essential to the scope of Proposition~\ref{prop:partial-sum}.
+
+A vector $u=(u_1,\ldots,u_m)$ is a weak solution on $Q_T$ if
+\[
+ u_i\in C([0,T];L^1(\Omega))\cap L^2(0,T;H_0^1(\Omega)),\qquad
+ f_i(\cdot,u,\nabla u)\in L^1(Q_T),
+\]
+and, for every $\varphi\in C_c^\infty([0,T)\times\Omega)$,
+\[
+ -\int_{Q_T}u_i\partial_t\varphi+d_i\int_{Q_T}\nabla u_i\cdot\nabla\varphi
+ =\int_\Omega u_{i,0}\varphi(0,\cdot)+\int_{Q_T}f_i(t,x,u,\nabla u)\varphi.
+\]
+This weak formulation is the only solution concept used below.
+
+\subsection{Approximation scheme}
+
+For completeness, let $u_{i,0}^n\in C_c^\infty(\Omega)$ be nonnegative approximations converging to $u_{i,0}$ in $L^2(\Omega)$. Let $\chi_n$ be a smooth cut-off equal to one on $[0,n]$ and zero on $[2n,\infty)$, and define
+\[
+ f_i^n(t,x,u,p)=\chi_n(|u|+|p|)f_i(t,x,u,p).
+\]
+Because the same nonnegative scalar cut-off multiplies every component, the partial-sum sign is preserved pointwise:
+\[
+ \sum_{i=1}^r f_i^n=\chi_n(|u|+|p|)\sum_{i=1}^r f_i\le0.
+\]
+Using component-dependent cut-offs would not provide this implication and would require a separate argument.
+
+The same common cut-off also preserves quasi-positivity: since $\chi_n\ge0$, each $f_i^n$ has the same nonnegative boundary-face sign as $f_i$. For the sufficiently regular approximants used below, the standard invariant-region (equivalently, first-contact/negative-part) argument therefore preserves the nonnegative cone from nonnegative initial data and homogeneous Dirichlet boundary values. Hence
+\[
+u_{i,n}\ge0,\qquad U_{r,n}=\sum_{j=1}^r u_{j,n}\ge0,\qquad T_k(U_{r,n})\ge0.
+\]
+Combining this with $\sum_{j=1}^r f_j^n\le0$ yields the signed reaction estimate
+\[
+\left(\sum_{j=1}^r f_j^n\right)T_k(U_{r,n})\le0,
+\]
+which is the implication used in Proposition~\ref{prop:partial-sum}.
+
+The regularized problem is
+\begin{equation}
+ \partial_tu_{i,n}-d_i\Delta u_{i,n}=f_i^n(t,x,u_n,\nabla u_n),
+ \quad u_{i,n}|_{\partial\Omega}=0,
+ \quad u_{i,n}(0)=u_{i,0}^n.
+ \label{eq:approx-system}
+\end{equation}
+For the energy calculation, we work with sufficiently regular nonnegative solutions of~\eqref{eq:approx-system}; such regularity may be obtained through an additional smoothing of the data and nonlinearities in the standard approximation procedure. The algebra below is independent of the particular smoothing. We write
+\[
+ U_{r,n}=\sum_{j=1}^r u_{j,n}.
+\]
+
+\subsection{Exact partial-sum energy identity and parametric absorption}
+
+Define the primitive
+\[
+ \Phi_k(s)=\int_0^sT_k(\tau)\,d\tau.
+\]
+It is nonnegative, satisfies $0\le\Phi_k(s)\le k|s|$, and obeys the Sobolev chain rules
+\[
+ \partial_t\Phi_k(U_{r,n})=T_k(U_{r,n})\partial_tU_{r,n},\qquad
+ \nabla T_k(U_{r,n})=\mathbf 1_{\{|U_{r,n}|<k\}}\nabla U_{r,n}
+\]
+almost everywhere (with the usual regularized interpretation at the two truncation levels). These facts justify the time term and the principal diffusion term below.
+Summing the first $r$ equations of~\eqref{eq:approx-system}, with $U_{r,n}=\sum_{j=1}^r u_{j,n}$, gives the exact differential identity
+\begin{equation}
+ \partial_tU_{r,n}-d_r\Delta U_{r,n}
+ =\sum_{j=1}^r f_j^n
+  +\sum_{j=1}^{r-1}(d_j-d_r)\Delta u_{j,n}.
+ \label{eq:exact-sum-equation}
+\end{equation}
+Testing~\eqref{eq:exact-sum-equation} by $T_k(U_{r,n})$, integrating over $(0,t)\times\Omega$, and using the homogeneous Dirichlet conditions yields
+\begin{align}
+ &\int_\Omega\Phi_k(U_{r,n}(t))
+ +d_r\int_0^t\!\!\int_\Omega|\nabla T_k(U_{r,n})|^2 \nonumber\\
+ &\quad=\int_\Omega\Phi_k(U_{r,n}(0))
+ +\int_0^t\!\!\int_\Omega\left(\sum_{j=1}^rf_j^n\right)T_k(U_{r,n}) \nonumber\\
+ &\qquad\quad+\sum_{j=1}^{r-1}(d_r-d_j)
+ \int_0^t\!\!\int_\Omega\nabla u_{j,n}\cdot\nabla T_k(U_{r,n}).
+ \label{eq:exact-partial-energy}
+\end{align}
+Equation~\eqref{eq:exact-partial-energy}, rather than an identity involving $\nabla T_k(u_{j,n})$, is the direct consequence of the approximating equations. Indeed,
+\[
+ \nabla T_k(u_{j,n})=\mathbf 1_{\{|u_{j,n}|<k\}}\nabla u_{j,n},\qquad
+ \nabla T_k(U_{r,n})=\mathbf 1_{\{|U_{r,n}|<k\}}\sum_{\ell=1}^r\nabla u_{\ell,n}.
+\]
+The two indicator sets are generally different. Hence multiplication by $\nabla T_k(U_{r,n})$ does not localize $\nabla u_{j,n}$ to $\{|u_{j,n}|<k\}$, and replacing the former by $\nabla T_k(u_{j,n})$ would change the identity. This observation is the precise reason why full, rather than merely truncated, preceding-gradient control appears in Lemma~\ref{lem:parametric-young}.
+
+\begin{assumption}[Preceding-gradient bound]\label{ass:previous-full-gradient}
+Let $r\ge2$ and $d_1,\ldots,d_r>0$. For $j=1,\ldots,r-1$, assume
+\begin{equation}
+ \sup_n\int_{Q_T}|\nabla u_{j,n}|^2\le C_j.
+ \label{eq:previous-full-gradient}
+\end{equation}
+\end{assumption}
+
+\begin{lemma}[Parametric control of the exact cross terms]
+\label{lem:parametric-young}
+Under Assumption~\ref{ass:previous-full-gradient}, the cross terms in~\eqref{eq:exact-partial-energy} can be absorbed into the principal $U_{r,n}$ term without ordering the diffusion coefficients.
+\end{lemma}
+
+\begin{proof}
+Put $a_j=|d_r-d_j|$ and $A_r=\sum_{j<r}a_j$. For every $\varepsilon>0$,
+\[
+ (d_r-d_j)\nabla u_{j,n}\cdot\nabla T_k(U_{r,n})
+ \le \frac{\varepsilon a_j}{2}|\nabla T_k(U_{r,n})|^2
+ +\frac{a_j}{2\varepsilon}|\nabla u_{j,n}|^2.
+\]
+If $A_r=0$, all cross terms vanish. Otherwise choose $\varepsilon=d_r/A_r$. Summation leaves at least $d_r/2$ of the principal diffusion term on the left and bounds the remaining contribution by
+\[
+ \sum_{j<r}\frac{a_jA_r}{2d_r}C_j.
+\]
+The constants depend on the fixed diffusion vector but not on $n$. Since $u_{i,0}^n\to u_{i,0}$ in $L^2(\Omega)$, the initial terms are also uniformly bounded for every fixed $k$.
+\end{proof}
+
+\begin{proposition}[Exact partial-sum estimate]
+\label{prop:partial-sum}
+Assume the regularized solutions are nonnegative, the common cut-off preserves the partial-sum sign $\sum_{j=1}^r f_j^n\le0$, and Assumption~\ref{ass:previous-full-gradient} holds. Then $T_k(U_{r,n})\ge0$, so the reaction contribution in~\eqref{eq:exact-partial-energy} is nonpositive. For every $t\le T$,
+\[
+ \frac{d_r}{2}\int_0^t\!\!\int_\Omega|\nabla T_k(U_{r,n})|^2
+ \le \int_\Omega\Phi_k(U_{r,n}(0))
+ +\sum_{j<r}\frac{a_jA_r}{2d_r}C_j,
+\]
+uniformly in $n$. No monotone ordering of the fixed positive vector $(d_1,\ldots,d_r)$ is required at this absorption step.
+\end{proposition}
+
+\begin{proof}
+Use the sign of the reaction term in~\eqref{eq:exact-partial-energy}, discard the nonnegative terminal term $\int_\Omega\Phi_k(U_{r,n}(t))$, and apply Lemma~\ref{lem:parametric-young}.
+\end{proof}
+
+\begin{remark}
+The estimate is conditional on full $L^2$ gradient bounds for the preceding components. Bounds only for $\nabla T_k(u_{j,n})$ do not control the exact cross terms in~\eqref{eq:exact-partial-energy}. Consequently, the estimate applies within frameworks in which Assumption~\ref{ass:previous-full-gradient}, equivalently~\eqref{eq:previous-full-gradient}, has already been established. The value of Proposition~\ref{prop:partial-sum} is therefore not to generate the preceding-gradient estimates, but to separate their derivation from the subsequent partial-sum coercivity step. Any independently available componentwise energy, entropy, or duality estimate may be inserted at this point; once the full-gradient bounds are available, no monotone ordering of the diffusion coefficients is needed for the absorption step. This hypothesis should be stated whenever the proposition is used.
+\end{remark}
+\subsection{Relation to the earlier triangular arguments}
+
+For the historical formulations and the complete compactness constructions, the reader is referred to the partial-sum arguments developed for critical-gradient triangular systems in~\cite{alaa2013triangular,bouarifi2015climate}. Rather than relying on equation numbers that may vary between published and archived versions, we reproduce here the relevant calculation in a self-contained form. When the coefficients $d_j$ differ, direct integration by parts yields the cross-diffusion contribution $\nabla u_{j,n}\cdot\nabla T_k(U_{r,n})$, not $\nabla T_k(u_{j,n})\cdot\nabla T_k(U_{r,n})$. Equation~\eqref{eq:exact-partial-energy} is therefore the identity used throughout the present paper. When it is inserted into a particular earlier existence framework, one must verify at the corresponding stage of that framework that Assumption~\ref{ass:previous-full-gradient} is available.
+
+\begin{table}[H]
+\centering
+\caption{Documented scope of the earlier triangular results and the analytical point isolated here. The earlier works are cited for their complete theorem-level scope; the present column records the narrower coercivity statement proved in this paper.}
+\label{tab:prior-present}
+\small
+\begin{tabularx}{\textwidth}{@{}p{3.0cm}XX@{}}
+\toprule
+Aspect & Documented scope in Refs.~\cite{alaa2013triangular,bouarifi2015climate} & Present isolated statement \\ \midrule
+Theorem level & Weak/global-existence frameworks for triangular reaction--diffusion systems with positivity and critical gradient growth; Ref.~\cite{alaa2013triangular} also treats low-regularity $L^1$ data & No replacement existence theorem is claimed; Proposition~\ref{prop:partial-sum} isolates one reusable coercivity step \\[1mm]
+Cross-gradient step & Treated inside complete approximation and compactness constructions; no local formula is attributed here beyond what is re-derived below & Direct integration by parts is written self-containedly and produces $\nabla u_{j,n}\!\cdot\!\nabla T_k(U_{r,n})$ \\[1mm]
+Required information & The complete results rely on their own structural/a-priori estimates & Full $L^2$ control of preceding gradients is exposed explicitly as Assumption~\ref{ass:previous-full-gradient} \\[1mm]
+Diffusion conclusion & No broader reclassification of the earlier theorems is inferred here & Conditional on Assumption~\ref{ass:previous-full-gradient}, the cross terms are absorbed for any fixed positive diffusion vector without monotone ordering \\ \bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Logical role of the exact estimate}
+
+The argument has the following explicit dependency chain:
+\begin{equation*}
+\begin{aligned}
+&\text{common sign-preserving approximation}\\
+&\quad\Longrightarrow\text{ exact identity~\eqref{eq:exact-partial-energy}}\\
+&\quad\Longrightarrow\text{ nonpositive reaction contribution}\\
+&\quad\Longrightarrow\text{ absorption of the cross terms}.
+\end{aligned}
+\end{equation*}
+The last implication combines Assumption~\ref{ass:previous-full-gradient} with Lemma~\ref{lem:parametric-young}. Every arrow is contained in the preceding derivation. By contrast, deriving Assumption~\ref{ass:previous-full-gradient} from the remaining structural assumptions, establishing equi-integrability of the nonlinearities, and passing to the limit are separate compactness steps. This distinction makes the mathematical contribution auditable and prevents a conditional energy estimate from being read as an unconditional existence theorem.
+
+\subsection{Illustration with non-monotone diffusion coefficients}
+
+The absence of an ordering requirement becomes visible when several cross terms must be treated simultaneously. For example, consider $r=3$ and
+\[
+ (d_1,d_2,d_3)=(0.1,0.8,0.3).
+\]
+This vector is neither nondecreasing nor nonincreasing. For the third partial sum, $a_1=|d_3-d_1|=0.2$, $a_2=|d_3-d_2|=0.5$, and $A_3=0.7$. Choosing
+\[
+ \varepsilon=\frac{d_3}{A_3}=\frac{3}{7}
+\]
+in Lemma~\ref{lem:parametric-young} absorbs both cross terms simultaneously and leaves $d_3/2=0.15$ in front of $\|\nabla T_k(U_{3,n})\|_{L^2(Q_T)}^2$. The remaining contribution is bounded by
+\[
+ \frac{a_1A_3}{2d_3}C_1+\frac{a_2A_3}{2d_3}C_2
+ =\frac{7}{30}C_1+\frac{7}{12}C_2.
+\]
+This example makes the non-monotone case explicit. Section~\ref{subsec:three-component} uses the same diffusion vector and obtains $C_1\le1.2$ and $C_2\le0.0708984375$ independently from component energy identities, so the Young remainder is bounded by $0.321357421875$. The calculation therefore closes the conditional coercivity estimate for that benchmark; compactness and nonlinear limit identification remain separate theorem-level steps.
+\subsection{Scope of the analytical conclusion}
+
+The analytical conclusion is the exact identity~\eqref{eq:exact-partial-energy} together with its parametric absorption under Assumption~\ref{ass:previous-full-gradient}. A complete existence result additionally requires a mechanism that supplies the full-gradient bounds and closes equi-integrability, compactness, and nonlinear limit passage. Proposition~\ref{prop:partial-sum} is intended as the reusable coercivity component of such a framework.
