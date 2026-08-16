@@ -28,9 +28,3 @@ Use `--mode publication` for the main five-seed PINN study. Recreated artifacts 
 
 The archived outputs include common-grid reference/FDM/FEM/PINN fields, accuracy and runtime metrics, manufactured-solution refinements, three-component benchmark fields and metrics, and coercivity and initial-condition diagnostics. They remain the source of record for the numerical values reported in the associated manuscript.
 
-## Archive and citation
-
-The software record is archived on Zenodo.
-
-- Version `v1.0.0`: [10.5281/zenodo.21968286](https://doi.org/10.5281/zenodo.21968286)
-- Concept DOI for all versions: [10.5281/zenodo.21968285](https://doi.org/10.5281/zenodo.21968285)
